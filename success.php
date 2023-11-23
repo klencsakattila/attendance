@@ -12,15 +12,15 @@
         $contact = $_POST['phone'];
         $specialty = $_POST['specialty'];
 
-        /*$orig_file = $_FILES["avatar"]["tmp_name"];
+        $orig_file = $_FILES["avatar"]["tmp_name"];
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         $target_dir = 'uploads/';
         $destination = "$target_dir$contact.$ext";
-        move_uploaded_file($orig_file,$destination);*/
+        move_uploaded_file($orig_file,$destination);
 
         
-        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email,$contact,$specialty/*$destination*/);
-        //$specialtyName = $crud->getSpecialtyById($specialty);
+        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email,$contact,$specialty,$destination);
+        $specialtyName = $crud->getSpecialtyById($specialty);
         
         if($isSuccess){
             //SendEmail::SendMail($email, 'Welcome to IT Conference 2019', 'You have successfully registerted for this year\'s IT Conference');

@@ -7,10 +7,10 @@
             $this->db = $conn;
         }
 
-        public function insertAttendees($fname, $lname, $dob, $email,$contact,$specialty/*$avatar_path*/){
+        public function insertAttendees($fname, $lname, $dob, $email,$contact,$specialty,$avatar_path){
             try {
                 
-                $sql = "INSERT INTO attendee (`firstname`, `lastname`, `dateofbirth`, `emailaddress`, `phonenumber`, `specialty_id`) VALUES (:fname,:lname,:dob,:email,:contact,:specialty/*:avatar_path*/)";                
+                $sql = "INSERT INTO attendee (`firstname`, `lastname`, `dateofbirth`, `emailaddress`, `phonenumber`, `specialty_id`) VALUES (:fname,:lname,:dob,:email,:contact,:specialty,:avatar_path)";                
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
@@ -18,7 +18,7 @@
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':contact',$contact);
                 $stmt->bindparam(':specialty',$specialty);
-                //$stmt->bindparam(':avatar_path',$avatar_path);
+                $stmt->bindparam(':avatar_path',$avatar_path);
 
                 $stmt->execute();
                 return true;
@@ -102,7 +102,7 @@
             }
             
         }
-        /*
+        
         public function getSpecialtyById($id){
             try{
                 $sql = "SELECT * FROM `specialties` where specialty_id = :id";
@@ -116,7 +116,7 @@
                 return false;
             }
             
-        }*/
+        }
 
 
         
