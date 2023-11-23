@@ -3,19 +3,11 @@
     $title = 'Index'; 
 
     require_once 'includes/header.php'; 
-    //require_once 'db/conn.php'; 
+    require_once 'db/conn.php'; 
 
-    //$results = $crud->getSpecialties();
+    $results = $crud->getSpecialties();
 
 ?>
-    <!-- 
-        - First name
-        - Last Name
-        - Date of Birth (Use DatePicker)
-        - Specialty (Database Admin, SOftware Developer, Web Administrator, Other)
-        - Email Address
-        - Contact Number
-     -->
     <h1 class="text-center">Registration for IT Conference </h1>
 
     <form method="post" action="success.php" enctype="multipart/form-data">
@@ -29,13 +21,13 @@
         </div>
         <div class="form-group">
             <label for="dob">Date Of Birth</label>
-            <input type="text" class="form-control" id="dob" name="dob">
+            <input type="date" class="form-control" id="dob" name="dob">
         </div>
         <div class="form-group">
             <label for="specialty">Area of Expertise</label>
             <select class="form-control" id="specialty" name="specialty">
                 <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) {?>
-                   <option value="<?php echo $r['specialty_id'] ?>"><?php echo $r['name']; ?></option>
+                    <option value="<?php echo $r['specialty_id'] ?>"><?php echo $r['name']; ?></option>
                 <?php }?>
             </select>
         </div>
