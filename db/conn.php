@@ -22,4 +22,5 @@
     $user = new user($pdo);
    
     $user->insertUser("admin","password");
+    $user->insertUser("admin2","Attila");
 ?>

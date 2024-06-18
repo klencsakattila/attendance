@@ -14,10 +14,17 @@
 
         $orig_file = $_FILES["avatar"]["tmp_name"];
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-        $target_dir = 'uploads/';
-        $destination = "$target_dir$contact.$ext";
-        move_uploaded_file($orig_file,$destination);
-
+        $blank = 'blank';
+        if($ext == '' || $ext == null){
+            $target_dir = 'uploads/';
+            $destination = "$target_dir$blank.png";
+            move_uploaded_file($orig_file,$destination);
+        }
+        else{
+            $target_dir = 'uploads/';
+            $destination = "$target_dir$contact.$ext";
+            move_uploaded_file($orig_file,$destination);
+        }
         
         $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email,$contact,$specialty,$destination);
         $specialtyName = $crud->getSpecialtyById($specialty);
